@@ -1,25 +1,26 @@
-public class SignedText{
-  private String first;
-  private String last;
+public class SignedText {
+    private String first;
+    private String last;
 
-  public signedText(String first, String last){
-    this.first = first;
-    this.last = last;
-  }
+    public SignedText(String first, String last) {
+        this.first = first;
+        this.last = last;
+    }
 
-  public String getSigniture(){
-    if (first.equals(null)){
-      return last;
+    public String getSignature() {
+        if (first == null) {
+            return last;
+        }
+        return (first.substring(0, 1) + "-" + last);
     }
-    return (first.substring(0,1) + "-" + last);
-  }
-  public String addSigniture(String str){
-    if (str.indexOf(getSigniture()) == 0){
-      return str.substring(getSigniture().length) + getSigniture();
+
+    public String addSignature(String str) {
+        String signature = getSignature();
+        if (str.startsWith(signature)) {
+            return str.substring(signature.length()) + signature;
+        } else if (!str.contains(signature)) {
+            return str + signature;
+        }
+        return str;
     }
-    else if (str.indexOf(getSigniture()) == -1){
-      return str + getSigniture();
-    }
-    return str;
-  }
 }
